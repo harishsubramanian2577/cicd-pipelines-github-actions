@@ -17,9 +17,9 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
-      branches-ignore:
-        - main
-        - dev
+      branch:
+        description: 'Select the feature branch'
+        required: false
       environment:
         description: 'The environment to deploy to'
         required: false

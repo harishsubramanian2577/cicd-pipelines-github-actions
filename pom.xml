@@ -15,6 +15,7 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<orgid>41c87594-b708-49d2-8276-89941b2731c9</orgid>
 		<mule.version>4.4.0</mule.version>
+		<app.runtime>4.4.0</app.runtime>
 		<mule.maven.plugin.version>3.8.2</mule.maven.plugin.version>
 		<tags />
 		<categories>[]</categories>

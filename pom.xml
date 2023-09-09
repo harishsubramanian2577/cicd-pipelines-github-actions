@@ -18,7 +18,7 @@
 		<tags />
 		<categories>[]</categories>
 		<maven.release.plugin.version>3.0.4</maven.release.plugin.version>
-		<project.scm.id>github</project.scm.id>
+		<app.name>${project.name}-${env}</app.name>
 	</properties>
 
 	<dependencies>
@@ -73,6 +73,19 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>false</filtering>
+			</resource>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>properties/*.yaml</include>
+				</includes>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -90,24 +103,33 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-					<cloudHubDeployment>
+					<cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
-						<muleVersion>${mule.version}</muleVersion>
-						<username>${anypoint.userName}</username>
-						<password>${anypoint.password}</password>
-						<applicationName>${cloudhub.environment}-${project.artifactId}</applicationName>
-						<environment>${cloudhub.environment}</environment>
-						<workerType>${cloudhub.workerType}</workerType>
-						<workers>${cloudhub.workers}</workers>
-						<region>${cloudhub.region}</region>
-						<objectStoreV2>true</objectStoreV2>
+						<provider>MC</provider>
+						<environment>${environment}</environment>
+						<target>${ch}</target>
+						<server>anypoint-exchange-v3</server>
+						<muleVersion>${app.runtime}</muleVersion>
+						<applicationName>${app.name}</applicationName>
+						<replicas>${replicas}</replicas>
+						<vCores>${vCores}</vCores>
+						<businessGroupId>${orgid}</businessGroupId>
+						<deploymentSettings>
+							<lastMileSecurity>false</lastMileSecurity>
+							<forwardSslSession>false</forwardSslSession>
+							<generateDefaultPublicUrl>true</generateDefaultPublicUrl>
+						</deploymentSettings>
 						<properties>
-							<maven.compiler.source>1.8</maven.compiler.source>
-							<maven.compiler.target>1.8</maven.compiler.target>
-							<mule.env>${cloudhub.environment}</mule.env>
-							<mule.encryption.key>${mule.encryption.key}</mule.encryption.key>
+							<env>${env}</env>
+							<json.logger.disabledFields>${json.logger.disabledFields}</json.logger.disabledFields>
+							<app.version>${project.version}</app.version>
 						</properties>
-					</cloudHubDeployment>
+						<secureProperties>
+							<anypoint.platform.client_id>${anypoint.platform.client_id}</anypoint.platform.client_id>
+							<anypoint.platform.client_secret>${anypoint.platform.client_secret}</anypoint.platform.client_secret>
+							<encryption.key>${encryption.key}</encryption.key>
+						</secureProperties>
+					</cloudhub2Deployment>
 					<classifier>mule-application</classifier>
 				</configuration>
 			</plugin>
@@ -153,12 +175,6 @@
 			<url>https://repository.mulesoft.org/releases/</url>
 			<layout>default</layout>
 		</repository>
-		<repository>
-			<id>Central</id>
-			<name>Central</name>
-			<url>http://repo1.maven.org/maven2/</url>
-			<layout>default</layout>
-		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -172,19 +188,13 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-
-        <scm>
-		<connection>scm:git:https://github.com/naaab/github-action-mule.git</connection>
-		<url>scm:git:https://github.com/naaab/github-action-mule.git</url>
-    	        <developerConnection>scm:git:https://github.com/naaab/github-action-mule.git</developerConnection>
-    	        <tag>pub-common-health-check-1.0.9</tag>
-        </scm>	
-
 	<distributionManagement>
 		<repository>
-			<id>github</id>
-			<name>github</name>
-			<url>https://maven.pkg.github.com/naaab/github-action-mule</url>  
+			<id>anypoint-exchange-v3</id>
+			<name>Corporate Repository</name>
+			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${orgid}/maven</url>
+			<layout>default</layout>
 		</repository>
 	</distributionManagement>
+
 </project>

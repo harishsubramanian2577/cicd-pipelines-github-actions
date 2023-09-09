@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>601dfad5-7be8-47f4-a62f-6df888b86612</groupId>
+	<groupId>41c87594-b708-49d2-8276-89941b2731c9</groupId>
 	<artifactId>pub-common-health-check</artifactId>
 	<version>1.0.19-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
@@ -13,6 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<orgid>41c87594-b708-49d2-8276-89941b2731c9</orgid>
 		<mule.version>4.4.0</mule.version>
 		<mule.maven.plugin.version>3.5.4</mule.maven.plugin.version>
 		<tags />

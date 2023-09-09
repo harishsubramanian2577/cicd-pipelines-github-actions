@@ -20,10 +20,6 @@ on:
       branch:
         description: 'The branch to build'
         required: true
-        - '*'         # matches every branch that doesn't contain a '/'
-        - '*/*'       # matches every branch containing a single '/'
-        - '**'        # matches every branch
-        - '!main'     # excludes master
       environment:
         description: 'The environment to deploy to'
         required: false

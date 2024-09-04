@@ -106,7 +106,7 @@ jobs:
                 "username": "${maven_enterprise_user}",
                 "password": "${maven_enterprise_pass}"
             }]
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4.1.7
       with:
         name: artifacts
     - name: Deploy to Anypoint Exchange
